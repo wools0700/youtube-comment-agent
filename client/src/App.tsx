@@ -112,7 +112,8 @@ function commentIssues(comment: string) {
         )
     if (!/[ㅠㅜ]{2,}|ㅎㅎ|\p{Extended_Pictographic}/u.test(text) && !longLaugh)
         issues.push('내용에 어울리는 감정 표현 하나를 넣어주세요.')
-    if (/[,，]/.test(text)) issues.push('쉼표 없이 자연스럽게 이어 쓰세요.')
+    if (/[,，.．。…]/.test(text))
+        issues.push('쉼표와 마침표 없이 자연스럽게 이어 쓰세요.')
     if (
         /운명원.{0,24}(?:보려고|봐야겠|봐볼까|볼까|보고 싶)(?:요|네요|다|[.!?~ㅠㅜ])*$/u.test(
             text,
