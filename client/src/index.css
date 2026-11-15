@@ -1,0 +1,27 @@
+:root {
+    --page: #fff;
+    --surface: #f8f7fc;
+    --soft: #e9e4f5;
+    --accent: #8b72d9;
+    --accent-dark: #6552a8;
+    --ink: #29243a;
+    --muted: #6c667a;
+    font-family: system-ui, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--page);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
