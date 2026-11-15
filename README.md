@@ -120,20 +120,22 @@ Node 설치와 `npm ci`까지 한 다음 `npm run dev -w client`로 화면만 �
 
 ## Git에 포함되는 것
 
-`package-lock.json`, `.env.example`, 소스 코드와 이 README는 저장소에 포함합니다. `.env`, `node_modules/`, `data/`, 빌드 결과물은 `.gitignore`로 제외합니다. 따라서 API 키, Chrome 로그인 상태, 로컬 댓글 기록은 저장소를 받은 PC로 전달되지 않습니다. 코드를 확인하려면 `npm run build`를 실행할 수 있습니다.
+`package-lock.json`, 키 이름만 적힌 `.env.example`, 소스 코드와 이 README는 저장소에 포함합니다. `.gitignore`는 실제 키가 들어 있는 `.env`, 인증서·자격 증명 파일, `data/`의 Chrome 로그인 상태·댓글 기록·AI 초안 캐시, 로그, 화면 캡처, `node_modules/`, 빌드 결과물을 제외합니다. 따라서 저장소를 받은 PC에서는 각자의 API 키를 넣고 YouTube에 다시 로그인해야 합니다. 코드를 확인하려면 `npm run build`를 실행할 수 있습니다.
+
+공개 전에 PowerShell에서 `git status --short`로 업로드할 파일을 확인하세요. `git check-ignore .env data/history.jsonl node_modules client/dist server/dist`를 실행하면 위 경로가 제외되는지도 확인할 수 있습니다. `.gitignore`는 **이미 추적 중인 파일을 자동으로 제거하지 않으므로**, `git ls-files`에도 비밀 파일이 없는지 확인하세요. 실제 API 키나 Google 로그인 자료를 README, 이슈, 화면 캡처, 커밋 메시지에 넣지 마세요.
 
 ## 처음 GitHub에 공개할 때 (게시자용)
 
-1. [GitHub에서 새 저장소](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)를 **Public**으로 만듭니다. 이 프로젝트에 README와 `.gitignore`가 이미 있으므로 GitHub의 새 저장소 생성 화면에서는 해당 파일을 추가하지 않습니다.
-2. 프로젝트 폴더에서 아래 명령을 실행합니다. `OWNER/REPO`는 방금 만든 저장소 주소로 바꿉니다.
+1. [GitHub에서 새 저장소](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)를 `youtube-comment-agent` 같은 이름으로 **Public**으로 만듭니다. 이 프로젝트에는 README와 `.gitignore`가 이미 있으므로 GitHub의 새 저장소 생성 화면에서 README·`.gitignore`·라이선스 자동 추가를 선택하지 않습니다.
+2. 이 프로젝트는 이미 `main` 브랜치와 로컬 커밋이 있습니다. 프로젝트 폴더에서 아래 명령을 실행합니다. `OWNER/REPO`를 방금 만든 저장소 주소로 바꿉니다.
 
 ```powershell
-git init -b main
-git add .
+cd C:\marketing-agent
 git status --short
-git commit -m "Add marketing agent dashboard"
+git check-ignore .env data/history.jsonl node_modules client/dist server/dist
 git remote add origin https://github.com/OWNER/REPO.git
+git remote -v
 git push -u origin main
 ```
 
-`git status --short` 단계에서 `.env`, `data/`, `node_modules/`가 목록에 없는지 확인한 뒤 커밋합니다. 키가 들어 있는 파일이 보이면 게시를 중단하고 제외 규칙을 먼저 확인하세요. 게시 후에는 저장소의 실제 URL로 위 **소스 받기** 명령을 실행할 수 있습니다. [기존 코드를 GitHub에 올리는 공식 안내](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
+`git remote -v`에 새 저장소 주소가 맞게 나오면 업로드합니다. 인증 창이 뜨면 본인 GitHub 계정으로 로그인합니다. 공개된 저장소에서 README와 소스가 보이는지 확인하고, 비밀 파일이나 `data/`가 보이지 않는지 다시 확인하세요. 이후 코드를 수정했다면 `git add .`, `git commit -m "Describe change"`, `git push` 순서로 올립니다. [기존 코드를 GitHub에 올리는 공식 안내](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)

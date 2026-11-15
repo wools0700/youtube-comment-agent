@@ -1,8 +1,37 @@
+# Dependencies and build output
 node_modules/
-client/dist/
-server/dist/
+dist/
+*.tsbuildinfo
+
+# Local API keys and credentials
 .env
 .env.*
 !.env.example
+*.local
+*.pem
+*.p12
+*.pfx
+*.key
+*credentials*.json
+*service-account*.json
+*storageState*.json
+*cookies*.json
+*token*.json
+
+# Browser profiles, local history, and captures
 data/
+chrome-profile-chooser/
+chrome-youtube*/
 screenshots/
+recordings/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and machine-specific files
+logs/
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
